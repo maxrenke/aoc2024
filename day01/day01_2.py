@@ -1,4 +1,5 @@
 import sys
+from collections import Counter
 
 
 if len(sys.argv) > 1:
@@ -13,14 +14,11 @@ if len(sys.argv) > 1:
                 left.append(int(columns[0]))
                 right.append(int(columns[1]))
 
-                left.sort()
-                right.sort()
+    right_counter = Counter(right)
+    print("Right counter:", right_counter)
+    
+    print(sum(right_counter[l]*l for l in left ))
 
-    print("Left array:", left)
-    print("Right array:", right)
-
-    difference_sum = sum(abs(l - r) for l, r in zip(left, right))
-    print("Sum of differences:", difference_sum)
 else:
     print("No file name provided.")
     sys.exit(1)
